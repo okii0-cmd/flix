@@ -67,5 +67,21 @@ class MoviesViewController:  UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    override func prepare(for segue: UIStoryboardSegue,sender:Any?){
+        
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!// table view knows the indexpath tapped on
+        let movie = movies[indexPath.row]
+        
+        // the sender is the cell that is tapped on
+        //Find the selected movie
+        //pass the selected move to the details view controller
+        let  detailsViewController = segue.destination as! MovieDetailsViewController // segue gives the generic view controller, we want it to use the MovieDetails one
+        detailsViewController.movie = movie // pass the movie into the intialized movie variable in details view controller
+         
+         
+    }
 
 }
+
